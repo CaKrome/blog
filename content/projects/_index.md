@@ -4,8 +4,6 @@ type: page
 ---
 
 
-### Hello my projects are
+### Currently maintained project:
 
-1. [Tatooine](/projects/tatooine/)
-2. [Hydra](/projects/hydra/)
-3. [Bludhaven](/projects/bludhaven/)
+1. [cpython-docker](/projects/cpython-docker/)
