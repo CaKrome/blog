@@ -5,13 +5,3 @@ type= "post"
 +++
 
 Hello World!
-
-# Section
-
-```bash
-curl ifconfig.me
-```
-
-## Sub Section
-
-smeee
