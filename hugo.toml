@@ -37,11 +37,10 @@ pygmentsStyle = "monokai"
     </script>
   """
   socialIcons = [
-    {name = "linkedin", url = "https://example.com"},
+    {name = "email", url = "mailto:cakrome@diequik.com"},
     {name = "github", url = "https://github.com/CaKrome"},
-    {name = "twitter", url = "https://twitter.com/CaKrome"},
     {name = "mastodon", url = "https://mastodon.social/@cakrome"},
-    {name = "email", url = "mailto:cakrome@diequik.com"}
+    {name = "twitter", url = "https://twitter.com/CaKrome"}
   ]
   metaKeywords = ["blog", "gokarna", "hugo"]
 
