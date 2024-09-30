@@ -1,5 +1,5 @@
 +++
-title = 'How to create a Debian VM Template in Proxmox VE with cloud-init support'
+title = 'How to create a Debian VM template in Proxmox VE with cloud-init support'
 date = 2024-09-22T22:17:42-04:00
 tags = ["proxmox", "devops", "virtualization"]
 type = "post"
@@ -7,7 +7,7 @@ type = "post"
 
 Disclaimer: the instructions in this blog post is largely based on Techno Tim's video [Perfect Proxmox Template with Cloud Image and Cloud Init](https://www.youtube.com/watch?v=shiIi38cJe4) with my own modifications.
 
-## Why using Templates in Proxmox?
+## Why using templates in Proxmox
 
 For certain cases we need to spin up seveal VMs to achieve our task, building a distributed system like a [Kubernetes](https://kubernetes.io) cluster, hosting a [Jenkins](https://www.jenkins.io) CI/CD platform or processing data at scale with [Apache Spark](https://spark.apache.org). Without a template, we would need to install the operating systems as many times as the number of instances required, making it a hassle and sometimes impractical.
 
@@ -19,7 +19,7 @@ VM template exists to solve this issue, we just need to build a minimal base VM,
 
 ## Instructions
 
-### Download Debian cloud image:
+### Download Debian cloud image
 SSH into your Proxmox host, then head to [Debian Official Cloud Images](https://cloud.debian.org/images/cloud/) and download the image, you can choose the version according to your need, I used the `generic` image here.
 
 ```bash
@@ -41,7 +41,7 @@ qm create 8000 --memory 1024 --cpu x86-64-v2-AES --cores 1 --name debian-cloud-t
 ```
 I used `vmbr1` here as the bridge since I have a separated VLAN configured specifically for virtual machines. If you do not have a separate network for VMs you can just use `vmbr0`.
 
-### Resize Image
+### Resize image
 
 We need to resize the image since the default size is too small for most use cases, I choose 32GB here.
 
@@ -82,7 +82,7 @@ qm set 8000 --boot c --bootdisk scsi0
 qm set 8000 --serial0 socket --vga serial0
 ```
 
-### Set OS Type
+### Set OS type
 
 ```bash
 qm set 8000 --ostype l26
