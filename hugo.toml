@@ -1,4 +1,4 @@
-baseURL = "https://cakrome.codeberg.page"
+baseURL = "https://blog.cakrome.diequik.com"
 title = "CaKrome's personal site"
 theme = "gokarna"
 languageCode = "en"
