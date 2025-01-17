@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        hugo-version: ["0.140.2"]
+        hugo-version: ["0.141.0"]
 
     steps:
       - name: Checkout
