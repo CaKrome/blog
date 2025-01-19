@@ -37,9 +37,11 @@ If you see `debian-12-generic-amd64.qcow2: OK`, then the image is good to be use
 
 Now we can create a VM with this command(adjust accoding to your need)
 ```bash
-qm create 8000 --memory 1024 --cpu x86-64-v2-AES --cores 1 --name debian-cloud-template --net0 virtio,bridge=vmbr1
+qm create 8000 --memory 1024 --cpu x86-64-v2-AES --bios ovmf --machine q35 --efidisk0 local-lvm:0,format=qcow2,pre-enrolled-keys=1 --cores 1 --name debian-cloud-template --net0 virtio,bridge=vmbr1
 ```
 I used `vmbr1` here as the bridge since I have a separated VLAN configured specifically for virtual machines. If you do not have a separate network for VMs you can just use `vmbr0`.
+
+Change `local-lvm` to your custom storage if needed.
 
 ### Resize image
 
@@ -52,14 +54,14 @@ qemu-img resize debian-12-generic-amd64.qcow2 32G
 ### Import image into Proxmox
 
 ```bash
-qm disk import 8000 debian-12-generic-amd64.qcow2 local-lvm
+qm disk import 8000 debian-12-generic-amd64.qcow2 local-lvm --format qcow2
 ```
 Change `local-lvm` to your custom storage name if you have a separate VM Disks storage configured.
 
 ### Attach the disk to a SCSI controller
 
 ```bash
-qm set 8000 --scsihw virtio-scsi-pci --scsi0 local-lvm:8000/vm-8000-disk-0.raw
+qm set 8000 --scsihw virtio-scsi-pci --scsi0 local-lvm:8000/vm-8000-disk-1.qcow2
 ```
 Change `local-lvm` to your custom storage if needed.
 
@@ -79,7 +81,7 @@ qm set 8000 --boot c --bootdisk scsi0
 ### Add serial console
 
 ```bash
-qm set 8000 --serial0 socket --vga serial0
+qm set 8000 --serial0 socket --vga std
 ```
 
 ### Set OS type
@@ -131,6 +133,5 @@ If you accidentally started the VM before you reach the [Create template](#creat
 
 ### Future work
 
+- Customize the cloud-init config beyond the options provided by Proxmox web interface.
 - Consolidate the steps in this post into a script.
-- Investigate how to boot with UEFI.
-- Customize the cloud-init config beyond the options provided by Proxmox web interface. 
