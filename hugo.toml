@@ -1,7 +1,7 @@
 baseURL = "https://blog.cakrome.diequik.com"
 title = "CaKrome's personal site"
 theme = "gokarna"
-languageCode = "en"
+locale = "en"
 defaultContentLanguage = "en"
 enableEmoji = true
 enableRobotsTXT = true
